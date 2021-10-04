@@ -1,0 +1,60 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block msgs %}
+
+ {% if messages %}
+  {% for msg in messages %}
+   <h4 {% if msg.tags %} class="alert alert-{{msg.tags}} mt-4" {% endif %}>{{msg}}</h4>
+  {% endfor %}
+ {% endif %}
+
+{% endblock msgs %}
+
+
+{% block content %}
+
+  <div class="col-sm-2 my-5">
+    <h2 class="text-warning">Profile</h2>
+    <h6 class="text-weight-bold text-italic">{{full_name}}</h6>
+    {% for g in groups %}
+     <p class="font-weight-bolder">{{g.name}}</p>
+    {% endfor %}
+  </div>
+  
+
+  <div class="col-sm-10">
+      <h2 class="font-weight-bolder m-4 text-white">Dashboard Page</h2>
+      <a href="{% url 'addpost' %}" class="btn btn-warning my-3">Add Post</a>
+      <table class="table table-hover bg-white mb-5">
+        <thead>
+          <tr>
+            <th style="width: 2%;">ID</th>
+            <th style="width: 25%;">TITTLE</th>
+            <th style="width: 55%;">DESCRIPTION</th>
+            <th style="width: 18%;">ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for post in posts %}
+           <tr>
+             <th scope="row">{{post.id}}</th>
+             <td>{{post.title}}</td>
+             <td>{{post.desc}}</td>
+
+             <td>
+               <a href="{% url 'updatepost' post.id %}" class="btn btn-warning btn-sm">Edit</a>
+               {% if perms.blog.delete_post %}
+               <form action="{% url 'deletepost' post.id %}" method="post" class="d-inline">
+                 {% csrf_token %}
+                 <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+               </form>
+               {% endif %}
+             </td>
+           </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  </div>
+
+{% endblock content %}

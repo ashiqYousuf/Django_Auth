@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div class="col-sm-10">
+      <h2 class="font-weight-bolder m-4 text-white">Login Page</h2>
+      <form action="" method="post" novalidate>
+        {% csrf_token %}
+
+        {% for fm in form %}
+         <div class="form-group">
+          {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+         </div>
+        {% endfor %}
+        <input type="submit" value="Login" class="btn my-4 bot btn-success">
+        {% if form.non_field_errors %}
+         {% for error in form.non_field_errors %}
+          <h4 class="alert alert-info">{{error}}</h4>
+         {% endfor %}
+        {% endif %}
+      </form>
+  </div>
+
+{% endblock content %}

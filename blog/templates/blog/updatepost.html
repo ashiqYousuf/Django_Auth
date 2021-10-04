@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="col-sm-10">
+    <h2 class="text-white font-weight-bolder m-4">Dashboard/ Update Post</h2>
+    {% if messages %}
+    {% for msg in messages %}
+     <h4 {% if msg.tags %} class="alert alert-{{msg.tags}} my-4" {% endif %}>{{msg}}</h4>
+    {% endfor %}
+    {% endif %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Update" class="btn btn-secondary mb-5">
+        <a href="{% url 'dashboard' %}" class="btn btn-danger mb-5">Cancel</a>
+    </form>
+</div> 
+
+{% endblock content %}

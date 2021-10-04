@@ -1,0 +1,16 @@
+body{
+    background-color: rgb(75,74,74);
+    color: antiquewhite;
+}
+
+.jumbo-color{
+    background-color: rgb(84,84,85);
+}
+
+.form-control{
+    background-color: rgb(177, 168,168);
+}
+
+.bot:hover{
+    color: black;
+}
