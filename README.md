@@ -17,4 +17,4 @@ the post also.
 ## To run this project :
 ### 1.Go inside the root project directory (Miniblog).
 ### 2.python manage.py runserver (Run this command to run this project)
-### It's assumed that Django Must be Installed in your System...
+### It's assumed that Python Must be Installed in your System (pip install django) 
